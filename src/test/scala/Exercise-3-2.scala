@@ -4,7 +4,7 @@ import fpinscala.datastructures._
 
 class Exercise_3_2 extends FlatSpec with Matchers {
   
-  "Tail" should "remove first element of list" in {
+  "Tail of list" should "return the list minus the first element" in {
     val l = List(1, 2, 3)
     List.tail(l) shouldBe List(2, 3)
   }

@@ -25,4 +25,8 @@ object List {
     case Cons(x, xs) => xs
   }
 
+  def setHead[A](l: List[A], newHead: A): List[A] = l match {
+    case Nil => Nil
+    case Cons(x, xs) => Cons(newHead, xs)
+  }
 }
