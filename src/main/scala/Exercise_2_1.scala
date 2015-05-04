@@ -1,4 +1,4 @@
-object MyModule {
+object Exercise_2_1 {
 
   def factorial(n: Int): Int = {
     @annotation.tailrec
