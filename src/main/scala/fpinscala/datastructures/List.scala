@@ -29,4 +29,9 @@ object List {
     case Nil => Nil
     case Cons(x, xs) => Cons(newHead, xs)
   }
+
+  def drop[A](l: List[A], n: Int): List[A] = l match {
+    case Nil => Nil
+    case Cons(x, xs) => if (n > 0) drop(xs, n - 1) else l
+  }
 }
