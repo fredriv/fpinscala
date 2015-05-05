@@ -45,6 +45,11 @@ object List {
     case Cons(x, xs) => if (f(x)) dropWhile(xs)(f) else Cons(x, dropWhile(xs)(f))
   }
 
+  def append[A](a1: List[A], a2: List[A]): List[A] = a1 match {
+    case Nil => a2
+    case Cons(h,t) => Cons(h, append(t, a2))
+  }
+
   def init[A](l: List[A]): List[A] = l match {
     case Nil => Nil
     case Cons(x, Nil) => Nil
@@ -80,5 +85,8 @@ object List {
 
   def appendViaFold[A](a1: List[A], a2: List[A]): List[A] =
     foldRight(a1, a2)(Cons(_,_))
+
+  def flatten[A](l: List[List[A]]): List[A] =
+    foldRight(l, Nil: List[A])(append)
 
 }
