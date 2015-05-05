@@ -5,6 +5,7 @@ case object Nil extends List[Nothing]
 case class Cons[+A](head: A, tail: List[A]) extends List[A]
 
 object List {
+
   def length(l: List[Any]): Int = l match {
     case Nil => 0
     case Cons(x, xs) => length(xs) + 1
@@ -39,4 +40,16 @@ object List {
     case Nil => Nil
     case Cons(x, xs) => if (n > 0) drop(xs, n - 1) else l
   }
+
+  def dropWhile[A](l: List[A], f: A => Boolean): List[A] = l match {
+    case Nil => Nil
+    case Cons(x, xs) => if (f(x)) dropWhile(xs, f) else Cons(x, dropWhile(xs, f))
+  }
+
+  def init[A](l: List[A]): List[A] = l match {
+    case Nil => Nil
+    case Cons(x, Nil) => Nil
+    case Cons(x, xs) => Cons(x, init(xs))
+  }
+
 }

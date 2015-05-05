@@ -21,10 +21,19 @@ object List_Specification extends Properties("List") {
     genList
   }
 
+  property("tail") = forAll { l: List[Int] =>
+    (l == Nil) ==> (List.tail(l) == Nil)
+    (l != Nil) ==> (List.length(List.tail(l)) == List.length(l) - 1)
+  }
+
   property("drop") = forAll { (l: List[Int], n: Int) =>
     (n <= 0) ==> (List.drop(l, n) == l)
     (n > 0 && n <= List.length(l)) ==> (List.length(List.drop(l, n)) == List.length(l) - n)
     (n > List.length(l)) ==> (List.drop(l, n) == Nil)
   }
 
+  property("init") = forAll { l: List[Int] =>
+    (List.length(l) <= 1) ==> (List.init(l) == Nil)
+    (List.length(l) > 1) ==> (List.length(l) == List.length(List.init(l)) + 1)
+  }
 }
