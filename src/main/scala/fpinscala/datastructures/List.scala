@@ -64,4 +64,10 @@ object List {
       case Cons(x, xs) => foldLeft(xs, f(z, x))(f)
     }
 
+  def sumFoldL(l: List[Int]) = foldLeft(l, 0)(_+_)
+
+  def productFoldL(l: List[Double]) = foldLeft(l, 1.0)(_*_)
+
+  def lengthFoldL(l: List[Any]) = foldLeft(l, 0)((acc, el) => acc + 1)
+
 }
